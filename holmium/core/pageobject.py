@@ -542,6 +542,11 @@ class Section(Faceted):
                     facet.register(self)
 
     def __get__(self, instance, owner):
+	    if instance is None:
+		    return self
+
+	    self.iframe = instance.iframe
+
         for element in self.element_members.values():
             element.root = lambda: self.root
         return self
